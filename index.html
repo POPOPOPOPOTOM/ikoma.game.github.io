@@ -289,7 +289,39 @@
                 .attr({ x:410, y:385, w:180, h:30 })
                 .textFont({size:'30px', weight:'bold'})
                 .textColor('#dc143c')
-                .text("→");			
+                .text("→");
+		
+// 	    Crafty.e('2D, Canvas, chara, Gravity, Twoway, SpriteAnimation')
+//                 .attr({x:5, y:50})   // 左端は安全エリア
+//                 .twoway(300)
+//                 .jumper(0)      // ジャンプさせない
+//                 .bind('EnterFrame', function () {
+//                     if( this.x < 0 ) this.x = 0;
+//                     if( this.x > 500 - this.w ) this.x = 500 - this.w;
+//                 })
+
+//                 // ここから
+//                 .bind('blink', function () { // blinkイベント発火時処理
+//                 this.reel('blink', 300, [[1,0],[0,0]]) // 1コマ目に存在しない座標を指定して点滅を表現
+//                 this.animate('blink', 2)               // 2回点滅するはず（何故か1回しか点滅しないことがよくある、謎）
+//                 })
+//                 // ここまで
+
+//                 .gravity('Floor');
+		
+// 		            function obj_drop(){
+//                 Crafty.e("obstacle, 2D, Canvas, Gravity, Collision")
+//                     .attr({x:Crafty.math.randomInt(80, 500-55), y:-50})
+//                     .checkHits("chara")
+//                     .bind("HitOn", function (hitData) {
+//                         Crafty.trigger('blink');  // この行を追加（HitOn時にblinkイベントを発火）（onHitっていうのがデフォルトであるっぽかったけどうまく動かなかった）
+//                         damage += 10;
+//                         if( damage == 10 ){
+//                             Crafty("Damage").text("♥♥");  
+		
+		
+		
+		
         </script>
     </body>
 </html>
