@@ -21,22 +21,26 @@
             .message_box {
                 background-color: #f0fff0;  /* 背景色指定 */
                 margin:  50px;                /* 周りの余白指定 */                
-                height: 230px;                /* 高さ指定 */
-                width: 350px;                 /* 幅指定 */
+                height: 300px;                /* 高さ指定 */
+                width: 340px;                 /* 幅指定 */
                 color: #2196F3;             /* 文字色指定 */
                 text-align:center;
             }
             .context {
                 text-align:left;
             }
+			.control {
+				text-align:center;
+                font-size: 0.8em;
+            }
             .button {
-		border: 3px solid #00b900;
+				border: 3px solid #00b900;
                 background-color: #00b900;  /* 背景色指定 */
-		color: #ffffff;
-		border-radius: 100vh;
-		font-size: 1.0em;
-		width: 80px;
-		cursor: pointer;
+				color: #ffffff;
+				border-radius: 100vh;
+				font-size: 1.0em;
+				width: 80px;
+				cursor: pointer;
             }
             .float_test {
                 float: left;                /* 回り込み指定 */
@@ -51,15 +55,19 @@
                 　　・金フクナガは通常フクナガ3匹分！<br>
                 　　・酒盃に3回当たったらゲームオーバー！<br>
                 　　・こつぶこましょで1回復！</p>
+				<p class="control">
+				PCは左右矢印キーでの操作、<br>
+				スマホではタッチ操作でプレイ！</p>
                 <input class="button" type="button"  value="リセット" onclick="koshin()">
-		<a href="https://twitter.com/share?ref_src=twsrc%5Etfw&amp;hashtags=こましょのゲーム&url=https://popopopopotom.github.io/&text=フクナガを救え！わたしのクリア時間は！" class="button" data-show-count="false" style="text-decoration: none;" >ツイート</a>
+				<a href="https://twitter.com/share?ref_src=twsrc%5Etfw&amp;hashtags=こましょのゲーム&url=https://popopopopotom.github.io/&text=フクナガを救え！わたしのクリア時間は！" class="button" data-show-count="false" style="text-decoration: none;" >ツイート</a>
             </div>    
         </div>
         <script>
-            Crafty.init(500,400, document.getElementById('game'));
+            Crafty.init(500,450, document.getElementById('game'));
             Crafty.background('#ffffC0');
 
-	    // -----------------------------------------------------------------------------------------
+			// -----------------------------------------------------------------------------------------
+
             
             // こましょの描画
             Crafty.sprite(70,93,"ikoma2.png",{chara:[0,0]});
@@ -81,11 +89,11 @@
                 .attr({x:0, y:350, w:75, h:10})
                 .color('#0000ff');
 
-      	    // -----------------------------------------------------------------------------------------
+			// -----------------------------------------------------------------------------------------
 
-  	    // 時間の表示
-	    let time = 0;
-	    Crafty.e("time, DOM, 2D, Text")
+			// 時間の表示
+			let time = 0;
+			Crafty.e("time, DOM, 2D, Text")
                 .attr({ x:20, y:20, w:180, h:20 })
                 .textFont({size:'20px', weight:'bold'})
                 .text(time+"秒");
@@ -93,17 +101,17 @@
 			   time = setInterval('timecount()',1000);
 			}
 			function timecount() {
-             Crafty("time").text(time+"秒");
+               Crafty("time").text(time+"秒");
 			   time += 1;
 			}
 			window.onload = timestart();
-	    // スコアの表示
+			// スコアの表示
             let score = 0;
             Crafty.e("Score, DOM, 2D, Text")
                 .attr({ x:20, y:50, w:180, h:20 })
                 .textFont({size:'20px', weight:'bold'})
                 .text("救ナガの数:0");
-	    // ダメージの表示
+			// ダメージの表示
             let damage = 0; 
             Crafty.e("Damage, DOM, 2D, Text")
                 .attr({ x:20, y:80, w:180, h:20 })
@@ -111,7 +119,7 @@
                 .textColor('#dc143c')
                 .text("♥♥♥");
 
-   	    // -----------------------------------------------------------------------------------------
+			// -----------------------------------------------------------------------------------------
 
             // 酒盃の描画
             Crafty.sprite(50,46,"sakazuki.png",{obstacle:[0,0]});
@@ -134,7 +142,7 @@
                             Crafty("Damage").text("♡");  
                             Crafty.pause();
                             Crafty.e('2D, DOM, Text')
-                                .attr({x:130, y:150, w:300})
+                                .attr({x:130, y:160, w:300})
                                 .text("GAME OVER").textColor('#00ff7f')
                                 .textFont({size:'40px', weight:'bold'});
                         }
@@ -171,7 +179,7 @@
 						this.destroy();
                     })
                     .bind('EnterFrame', function () {
-                        this.y += 10;
+                        this.y += 8;
                         if( this.y > 500 ){
                             this.destroy();
                         }
@@ -180,7 +188,7 @@
             // フクナガの描画
             Crafty.sprite(50,50,"fukunaga1.png",{Point:[0,0]});
             Crafty.bind("EnterFrame", function(){
-                if (Crafty.frame() % 120 == 0) dropPoint();
+                if (Crafty.frame() % 130 == 0) dropPoint();
             });
             function dropPoint(){
                 Crafty.e("Point, 2D, Canvas, Gravity, Collision")
@@ -192,7 +200,7 @@
                         if( score >= 30 ){
                             Crafty.pause();
                             Crafty.e('2D, DOM, Text')
-                                .attr({x:120, y:150, w:300})
+                                .attr({x:120, y:160, w:300})
                                 .text("GAME CLEAR").textColor('#00ff7f')
                                 .textFont({size:'40px', weight:'bold'});
                         }
@@ -208,7 +216,7 @@
             // 金フクナガの描画
             Crafty.sprite(50,50,"golnaga1.png",{Gold:[0,0]});
             Crafty.bind("EnterFrame", function(){
-                if (Crafty.frame() % 300 == 0) dropGold();
+                if (Crafty.frame() % 250 == 0) dropGold();
             });
             function dropGold(){
                 Crafty.e("Gold, 2D, Canvas, Gravity, Collision")
@@ -220,14 +228,14 @@
                         if( score >= 30 ){
                             Crafty.pause();
                             Crafty.e('2D, DOM, Text')
-                                .attr({x:120, y:150, w:300})
+                                .attr({x:120, y:160, w:300})
                                 .text("GAME CLEAR").textColor('#00ff7f')
                                 .textFont({size:'40px', weight:'bold'});
                         }
                         this.destroy();
                     })
                     .bind('EnterFrame', function () {
-                        this.y += 5;
+                        this.y += 10;
                         if( this.y > 500 ){
                             this.destroy();
                         }
@@ -236,36 +244,52 @@
 
 			// -----------------------------------------------------------------------------------------
 
-        function koshin(){
-            location.reload();
-        }
+            
+			function koshin(){
+				location.reload();
+			}
 
-        // スマホ対応
-        const leftKeydownEvent  = new KeyboardEvent("keydown", { keyCode: 37, altKey: false, shiftKey: false, key: "ArrowLeft" });
-        const rightKeydownEvent = new KeyboardEvent("keydown", { keyCode: 39, altKey: false, shiftKey: false, key: "ArrowRight" });
-        document.getElementById("game").addEventListener(
-            "touchstart", function (event) {
-                Crafty.s('Keyboard').resetKeyDown();
-                // 座標を取得
-                var touchObject = event.changedTouches[0];
-                var touchX = touchObject.pageX;
-                var clientRect = this.getBoundingClientRect();
-                var positionX = clientRect.left + window.pageXOffset;
-                var x = touchX - positionX;
+			// スマホ対応
+			const leftKeydownEvent  = new KeyboardEvent("keydown", { keyCode: 37, altKey: false, shiftKey: false, key: "ArrowLeft" });
+			const rightKeydownEvent = new KeyboardEvent("keydown", { keyCode: 39, altKey: false, shiftKey: false, key: "ArrowRight" });
+			document.getElementById("game").addEventListener(
+				"touchstart", function (event) {
+					Crafty.s('Keyboard').resetKeyDown();
+					// 座標を取得
+					var touchObject = event.changedTouches[0];
+					var touchX = touchObject.pageX;
+					var clientRect = this.getBoundingClientRect();
+					var positionX = clientRect.left + window.pageXOffset;
+					var x = touchX - positionX;
 
-                // 処理
-                if (x > 250) {
-                    document.dispatchEvent(rightKeydownEvent);
-                } else {
-                    document.dispatchEvent(leftKeydownEvent);
-                }
-            }
-        )
-        document.getElementById("game").addEventListener(
-            "touchend", function (event) {
-                Crafty.s('Keyboard').resetKeyDown();
-            }
-        )  
+					// 処理
+					if (x > 250) {
+						document.dispatchEvent(rightKeydownEvent);
+					} else {
+						document.dispatchEvent(leftKeydownEvent);
+					}
+				}
+			)
+			document.getElementById("game").addEventListener(
+				"touchend", function (event) {
+					Crafty.s('Keyboard').resetKeyDown();
+				}
+			)
+            Crafty.e("DOM, 2D, Text")
+                .attr({ x:70, y:385, w:180, h:30 })
+                .textFont({size:'30px', weight:'bold'})
+                .textColor('#dc143c')
+                .text("←");
+            Crafty.e("DOM, 2D, Text")
+                .attr({ x:155, y:390, w:200, h:20 })
+                .textFont({size:'20px', weight:'bold'})
+                .textColor('#dc143c')
+                .text("スマホタッチスペース");				
+            Crafty.e("DOM, 2D, Text")
+                .attr({ x:410, y:385, w:180, h:30 })
+                .textFont({size:'30px', weight:'bold'})
+                .textColor('#dc143c')
+                .text("→");			
         </script>
     </body>
 </html>
