@@ -17,7 +17,7 @@
 				font-size:62.5%
 			}
             .margin {
-                width: 1000px;
+                width: 100em;
                 margin:auto;             
                 margin-top: 5%;
             }
@@ -42,12 +42,37 @@
                 background-color: #00b900;  /* 背景色指定 */
 				color: #ffffff;
 				border-radius: 100vh;
-				width: 80px;
 				cursor: pointer;
+				text-decoration: none;
+				padding:0.2em;
             }
             .float_test {
                 float: left;                /* 回り込み指定 */
             }
+			@media (max-width: 670px)
+			{
+			    .margin {
+					width: 100em;
+					margin:auto;             
+					margin-top: 5%;
+					margin-left:40%;
+				}
+			    .message_box {
+					background-color: #f0fff0;  /* 背景色指定 */
+					margin:  2.5em;                /* 周りの余白指定 */
+					width: 23em;
+					height: 18em;                /* 高さ指定 */
+					border-radius: 5vh;
+					color: #2196F3;             /* 文字色指定 */
+					text-align:center;
+					font-size: 1.6em;
+					margin-left:7%;
+					padding: 0.5em
+				}
+				.float_test {
+					float: none;                /* 回り込み指定 */
+				}
+			}
         </style>
         <div class="margin">
             <div id="game" class="float_test"></div>
@@ -62,7 +87,7 @@
 				PCは左右矢印キーでの操作、<br>
 				スマホではタッチ操作でプレイ！</p>
                 <input class="button" type="button"  value="リセット" onclick="koshin()">
-				<a href="https://twitter.com/share?ref_src=twsrc%5Etfw&amp;hashtags=こましょのゲーム&url=https://popopopopotom.github.io/&text=フクナガを救え！わたしのクリア時間は！" class="button" data-show-count="false" style="text-decoration: none;" >ツイート</a>
+				<a href="https://twitter.com/share?ref_src=twsrc%5Etfw&amp;hashtags=こましょのゲーム&url=https://popopopopotom.github.io/&text=フクナガを救え！わたしのクリア時間は！" class="button" data-show-count="false" style=" font-size: 0.8em;" >ツイート</a>
             </div>    
         </div>
         <script>
@@ -311,4 +336,21 @@
                 .text("→");			
         </script>
     </body>
+	<footer>
+		<style type="text/css">
+            footer{
+                position: fixed;
+                bottom: 0;
+				text-align:right;
+				right:0;
+            }
+        </style>
+		<div style="">
+			～伊狛鍾卒業記念～<br>
+			スペシャルサンクス<br>
+			いこまつり<br>
+			製作<br>
+			ぽっとむ<br>
+		<div>
+	</footer>
 </html>
