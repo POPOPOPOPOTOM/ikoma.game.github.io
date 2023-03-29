@@ -1,6 +1,6 @@
 ﻿<html lang="ja">
     <head>
-        <meta charset="UTF-8" />
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
         <title>フクナガを救え！</title>
         <link rel="icon" type="image/x-icon" href="fukunaga1.png">
         <script src="crafty-min.js"></script>
@@ -13,6 +13,9 @@
     </head>
     <body onLoad="timestart()">
         <style type="text/css">
+			html{
+				font-size:62.5%
+			}
             .margin {
                 width: 1000px;
                 margin:auto;             
@@ -20,11 +23,12 @@
             }
             .message_box {
                 background-color: #f0fff0;  /* 背景色指定 */
-                margin:  50px;                /* 周りの余白指定 */                
-                height: 300px;                /* 高さ指定 */
-                width: 340px;                 /* 幅指定 */
+                margin:  2.5em;                /* 周りの余白指定 */                
+                height: 18em;                /* 高さ指定 */
+				border-radius: 5vh;
                 color: #2196F3;             /* 文字色指定 */
                 text-align:center;
+				font-size: 1.6em;
             }
             .context {
                 text-align:left;
@@ -38,7 +42,6 @@
                 background-color: #00b900;  /* 背景色指定 */
 				color: #ffffff;
 				border-radius: 100vh;
-				font-size: 1.0em;
 				width: 80px;
 				cursor: pointer;
             }
@@ -53,7 +56,7 @@
                 <p class="context">
                 　　・フクナガを30匹救ったらクリア！<br>
                 　　・金フクナガは通常フクナガ3匹分！<br>
-                　　・酒盃に3回当たったらゲームオーバー！<br>
+                　　・酒盃に3回当たったらゲームオーバー！　<br>
                 　　・こつぶこましょで1回復！</p>
 				<p class="control">
 				PCは左右矢印キーでの操作、<br>
@@ -220,6 +223,7 @@
                     });
             }
             // 金フクナガの描画
+			let secret = 0;
             Crafty.sprite(50,50,"golnaga1.png",{Gold:[0,0]});
             Crafty.bind("EnterFrame", function(){
                 if (Crafty.frame() % 250 == 0) dropGold();
@@ -230,13 +234,22 @@
                     .checkHits("chara")
                     .bind("HitOn", function (hitData) {
                         score += 3;
+						secret += 1;
                         Crafty("Score").text("救ナガの数:"+score);
                         if( score >= 30 ){
                             Crafty.pause();
-                            Crafty.e('2D, DOM, Text')
-                                .attr({x:120, y:160, w:300})
-                                .text("GAME CLEAR").textColor('#00ff7f')
-                                .textFont({size:'40px', weight:'bold'});
+							if( secret >= 5){
+								Crafty.e('2D, DOM, Text')
+									.attr({x:100, y:160, w:330})
+									.text("SUPER CLEAR!").textColor('#FFD700')
+									.textFont({size:'40px', weight:'bold'});
+							}
+							else{
+								Crafty.e('2D, DOM, Text')
+									.attr({x:120, y:160, w:300})
+									.text("GAME CLEAR").textColor('#00ff7f')
+									.textFont({size:'40px', weight:'bold'});
+							}
                         }
                         this.destroy();
                     })
